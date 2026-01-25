@@ -18,7 +18,7 @@ erDiagram
 
     User {
         string id PK
-        string email UK
+        string email "unique"
         string name
         string image
         datetime emailVerified
@@ -42,7 +42,7 @@ erDiagram
 
     Session {
         string id PK
-        string sessionToken UK
+        string sessionToken "unique"
         string userId FK
         datetime expires
     }
@@ -57,7 +57,7 @@ erDiagram
 
     ContactInfo {
         string id PK
-        string resumeId FK UK
+        string resumeId FK "unique"
         string fullName
         string email
         string phone
@@ -69,7 +69,7 @@ erDiagram
 
     Summary {
         string id PK
-        string resumeId FK UK
+        string resumeId FK "unique"
         text content
     }
 
