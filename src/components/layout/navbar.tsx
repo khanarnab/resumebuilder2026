@@ -1,0 +1,1 @@
+export function Navbar() { return <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white"><div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4"><span className="text-xl font-bold">ResumeBuilder</span><a href="/auth/signin" className="rounded-md bg-gray-900 px-4 py-2 text-sm text-white">Sign In</a></div></header> }
