@@ -41,7 +41,7 @@ A full-stack resume builder application built with Next.js, demonstrating authen
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/khanarnab/ResumeBuilder2026.git
+   git clone https://github.com/yourusername/ResumeBuilder2026.git
    cd ResumeBuilder2026
    ```
 
