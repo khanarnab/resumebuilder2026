@@ -487,3 +487,21 @@ export async function deleteProject(id: string, resumeId: string) {
 
   return { success: true }
 }
+
+export async function updateResumeTitle(id: string, title: string) {
+  const session = await auth()
+
+  if (!session?.user?.id) {
+    return { error: "Unauthorized" }
+  }
+
+  await prisma.resume.update({
+    where: { id, userId: session.user.id },
+    data: { title },
+  })
+
+  revalidatePath(`/editor/${id}`)
+  revalidatePath("/dashboard")
+
+  return { success: true }
+}

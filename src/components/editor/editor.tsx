@@ -8,6 +8,9 @@ import { ExperienceForm } from "./experience-form"
 import { EducationForm } from "./education-form"
 import { SkillsForm } from "./skills-form"
 import { ProjectsForm } from "./projects-form"
+import { EditableTitle } from "./editable-title"
+import { ResumePreview } from "./resume-preview"
+import { DownloadButton } from "./download-button"
 
 type Section = "contact" | "summary" | "experience" | "education" | "skills" | "projects"
 
@@ -84,11 +87,9 @@ export function Editor({ resume }: EditorProps) {
                     >
                         ← Back
                     </Link>
-                    <span className="font-medium text-gray-900">{resume.title}</span>
+                    <EditableTitle resumeId={resume.id} initialTitle={resume.title} />
                 </div>
-                <button className="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800">
-                    Download PDF
-                </button>
+                <DownloadButton resume={resume} />
             </div>
 
             {/* Editor Layout */}
@@ -178,8 +179,8 @@ export function Editor({ resume }: EditorProps) {
 
                 {/* Preview Area */}
                 <div className="w-80 border-l border-gray-200 bg-gray-100 p-4">
-                    <div className="aspect-[8.5/11] rounded-lg bg-white p-6 shadow-lg">
-                        <p className="text-center text-xs text-gray-400">Preview</p>
+                    <div className="aspect-[8.5/11] rounded-lg bg-white shadow-lg overflow-hidden">
+                        <ResumePreview resume={resume} />
                     </div>
                 </div>
             </div>
