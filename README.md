@@ -4,85 +4,118 @@ A full-stack resume builder application built with Next.js, demonstrating authen
 
 ## Live Demo
 
-[Coming Soon](#)
-
-## Tech Stack
-
-- **Framework:** Next.js 14 (App Router)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS
-- **Authentication:** NextAuth.js v5
-- **Database:** PostgreSQL
-- **ORM:** Prisma
-- **Validation:** Zod
-- **Forms:** React Hook Form
-- **Database Hosting:** Neon
-- **Deployment:** Vercel
+[resumebuilder2026.vercel.app](https://resumebuilder2026.vercel.app)
 
 ## Features
 
-- GitHub OAuth authentication
-- Create, edit, and delete multiple resumes
-- Real-time preview while editing
-- Drag-and-drop section reordering
-- PDF export
-- Auto-save functionality
+- **GitHub Authentication** — Secure sign-in with OAuth 2.0
+- **Multiple Resumes** — Create and manage multiple resumes
+- **Real-time Preview** — See your resume as you build it
+- **PDF Export** — Download your resume as a professionally formatted PDF
+- **Auto-save** — Data persists as you edit each section
+- **Responsive Editor** — Sidebar navigation with section-based editing
+
+### Resume Sections
+
+- Contact Information
+- Professional Summary
+- Work Experience (multiple entries)
+- Education (multiple entries)
+- Skills
+- Projects (multiple entries)
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| Framework | Next.js 14 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS |
+| Authentication | NextAuth.js v5 |
+| Database | PostgreSQL |
+| ORM | Prisma |
+| PDF Generation | @react-pdf/renderer |
+| Database Hosting | Neon |
+| Deployment | Vercel |
 
 ## Getting Started
 
 ### Prerequisites
 
 - Node.js 18+
-- npm or yarn
+- npm
 - GitHub OAuth app credentials
-- Neon database (or any PostgreSQL instance)
+- PostgreSQL database (Neon recommended)
 
 ### Installation
 
 1. Clone the repository:
-   ```bash
+```bash
    git clone https://github.com/yourusername/ResumeBuilder2026.git
    cd ResumeBuilder2026
-   ```
+```
 
 2. Install dependencies:
-   ```bash
+```bash
    npm install
-   ```
+```
 
 3. Set up environment variables:
-   ```bash
-   cp .env.example .env.local
-   ```
+```bash
+   cp .env.example .env
+```
 
-4. Configure your `.env.local` with:
-   ```
+4. Configure your `.env` with:
+```
    DATABASE_URL="your-neon-connection-string"
-   NEXTAUTH_SECRET="your-secret-key"
+   NEXTAUTH_SECRET="generate-with-openssl-rand-base64-32"
    NEXTAUTH_URL="http://localhost:3000"
    GITHUB_ID="your-github-oauth-app-id"
    GITHUB_SECRET="your-github-oauth-app-secret"
-   ```
+```
 
-5. Run database migrations:
-   ```bash
-   npx prisma migrate dev
-   ```
+5. Generate Prisma client and run migrations:
+```bash
+   npx prisma generate
+   npx prisma db push
+```
 
 6. Start the development server:
-   ```bash
+```bash
    npm run dev
-   ```
+```
 
 7. Open [http://localhost:3000](http://localhost:3000)
 
+## Project Structure
+```
+ResumeBuilder2026/
+├── src/
+│   ├── app/                  # Next.js App Router pages
+│   │   ├── api/auth/         # NextAuth.js API routes
+│   │   ├── auth/signin/      # Sign-in page
+│   │   ├── dashboard/        # Resume list page
+│   │   └── editor/[id]/      # Resume editor page
+│   ├── components/
+│   │   ├── editor/           # Editor components
+│   │   ├── landing/          # Landing page components
+│   │   └── layout/           # Layout components
+│   └── lib/
+│       ├── actions.ts        # Server actions
+│       ├── auth.ts           # NextAuth configuration
+│       └── db.ts             # Prisma client
+├── prisma/
+│   └── schema.prisma         # Database schema
+└── docs/                     # Documentation
+```
+
 ## Documentation
 
-- [Architecture](docs/ARCHITECTURE.md) — Tech stack decisions, folder structure, design patterns
-- [User Flows](docs/USER-FLOWS.md) — How users navigate through the application
-- [Database Schema](docs/DATABASE.md) — Data models, relationships, and ERD
-- [Authentication](docs/AUTH.md) — NextAuth.js implementation details
-- [Components](docs/COMPONENTS.md) — Component inventory and hierarchy
+- [Architecture](docs/ARCHITECTURE.md) — Tech stack decisions and design patterns
+- [User Flows](docs/USER-FLOWS.md) — Application user journeys
+- [Database Schema](docs/DATABASE.md) — Data models and relationships
+- [Authentication](docs/AUTH.md) — NextAuth.js implementation
+- [Components](docs/COMPONENTS.md) — Component inventory
 
 ## Scripts
 
@@ -92,12 +125,8 @@ A full-stack resume builder application built with Next.js, demonstrating authen
 | `npm run build` | Build for production |
 | `npm run start` | Start production server |
 | `npm run lint` | Run ESLint |
-| `npx prisma studio` | Open Prisma database GUI |
-| `npx prisma migrate dev` | Run database migrations |
-
-## Project Status
-
-This project is currently in development. See the [project board](#) for progress.
+| `npx prisma studio` | Open database GUI |
+| `npx prisma db push` | Push schema to database |
 
 ## License
 
