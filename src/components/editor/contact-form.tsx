@@ -38,7 +38,7 @@ export function ContactForm({ resumeId, initialData }: ContactFormProps) {
   return (
     <form action={handleSubmit} className="space-y-4">
       <div>
-        <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
           Full Name
         </label>
         <input
@@ -46,12 +46,12 @@ export function ContactForm({ resumeId, initialData }: ContactFormProps) {
           id="fullName"
           name="fullName"
           defaultValue={initialData?.fullName || ""}
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-gray-400"
         />
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
           Email
         </label>
         <input
@@ -59,12 +59,12 @@ export function ContactForm({ resumeId, initialData }: ContactFormProps) {
           id="email"
           name="email"
           defaultValue={initialData?.email || ""}
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-gray-400"
         />
       </div>
 
       <div>
-        <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
           Phone
         </label>
         <input
@@ -72,12 +72,12 @@ export function ContactForm({ resumeId, initialData }: ContactFormProps) {
           id="phone"
           name="phone"
           defaultValue={initialData?.phone || ""}
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-gray-400"
         />
       </div>
 
       <div>
-        <label htmlFor="location" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="location" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
           Location
         </label>
         <input
@@ -86,12 +86,12 @@ export function ContactForm({ resumeId, initialData }: ContactFormProps) {
           name="location"
           defaultValue={initialData?.location || ""}
           placeholder="City, State"
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-gray-400"
         />
       </div>
 
       <div>
-        <label htmlFor="linkedin" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="linkedin" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
           LinkedIn URL
         </label>
         <input
@@ -100,12 +100,12 @@ export function ContactForm({ resumeId, initialData }: ContactFormProps) {
           name="linkedin"
           defaultValue={initialData?.linkedin || ""}
           placeholder="https://linkedin.com/in/yourname"
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-gray-400"
         />
       </div>
 
       <div>
-        <label htmlFor="github" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="github" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
           GitHub URL
         </label>
         <input
@@ -114,12 +114,12 @@ export function ContactForm({ resumeId, initialData }: ContactFormProps) {
           name="github"
           defaultValue={initialData?.github || ""}
           placeholder="https://github.com/yourname"
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-gray-400"
         />
       </div>
 
       <div>
-        <label htmlFor="website" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="website" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
           Personal Website
         </label>
         <input
@@ -128,14 +128,14 @@ export function ContactForm({ resumeId, initialData }: ContactFormProps) {
           name="website"
           defaultValue={initialData?.website || ""}
           placeholder="https://yourwebsite.com"
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-gray-400"
         />
       </div>
 
       <button
         type="submit"
         disabled={saving}
-        className="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 disabled:opacity-50"
+        className="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 disabled:opacity-50 dark:bg-gray-200 dark:hover:bg-gray-300 dark:text-gray-900 dark:hover:text-gray-800"
       >
         {saving ? "Saving..." : "Save"}
       </button>

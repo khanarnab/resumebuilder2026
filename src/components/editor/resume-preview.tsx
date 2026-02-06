@@ -51,7 +51,7 @@ export function ResumePreview({ resume }: ResumePreviewProps) {
   return (
     <div className="h-full overflow-y-auto bg-white p-6 text-[10px] leading-tight">
       {/* Header / Contact */}
-      <div className="text-center border-b border-gray-200 pb-3 mb-3">
+      <div className="text-center border-b border-gray-200 pb-3 mb-3 dark:border-gray-700">
         <h1 className="text-lg font-bold text-gray-900">
           {contactInfo?.fullName || "Your Name"}
         </h1>

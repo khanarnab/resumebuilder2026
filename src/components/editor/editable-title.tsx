@@ -36,7 +36,7 @@ export function EditableTitle({ resumeId, initialTitle }: EditableTitleProps) {
           }
         }}
         autoFocus
-        className="rounded border border-gray-300 px-2 py-1 text-sm font-medium focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+        className="rounded border border-gray-300 px-2 py-1 text-sm font-medium focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900 dark:focus:border-gray-300 dark:focus:ring-gray-300"
       />
     )
   }
@@ -44,7 +44,7 @@ export function EditableTitle({ resumeId, initialTitle }: EditableTitleProps) {
   return (
     <button
       onClick={() => setIsEditing(true)}
-      className="font-medium text-gray-900 hover:text-gray-600"
+      className="font-medium text-gray-900 hover:text-gray-600 dark:text-white dark:hover:text-gray-300"
       title="Click to rename"
     >
       {title}

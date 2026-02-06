@@ -44,25 +44,25 @@ function ProjectItem({
 
   if (!isOpen) {
     return (
-      <div className="flex items-center justify-between rounded-md border border-gray-200 p-4">
+      <div className="flex items-center justify-between rounded-md border border-gray-200 p-4 dark:border-gray-700">
         <div>
-          <p className="font-medium text-gray-900">
+          <p className="font-medium text-gray-900 dark:text-gray-100">
             {project.name || "Untitled Project"}
           </p>
           {project.url && (
-            <p className="text-sm text-gray-500">{project.url}</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">{project.url}</p>
           )}
         </div>
         <div className="flex gap-2">
           <button
             onClick={() => setIsOpen(true)}
-            className="text-sm text-gray-600 hover:text-gray-900"
+            className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400"
           >
             Edit
           </button>
           <button
             onClick={handleDelete}
-            className="text-sm text-red-600 hover:text-red-800"
+            className="text-sm text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-600"
           >
             Delete
           </button>
@@ -72,7 +72,7 @@ function ProjectItem({
   }
 
   return (
-    <form action={handleSubmit} className="rounded-md border border-gray-200 p-4 space-y-4">
+    <form action={handleSubmit} className="rounded-md border border-gray-200 p-4 space-y-4 dark:border-gray-700">
       <div>
         <label htmlFor={`name-${project.id}`} className="block text-sm font-medium text-gray-700">
           Project Name

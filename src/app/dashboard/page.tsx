@@ -20,15 +20,15 @@ export default async function DashboardPage() {
     <div className="mx-auto max-w-7xl px-4 py-10">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">My Resumes</h1>
-          <p className="mt-1 text-sm text-gray-600">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">My Resumes</h1>
+          <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
             Create and manage your resumes
           </p>
         </div>
         <form action={createResume}>
           <button
             type="submit"
-            className="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800"
+            className="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600"
           >
             New Resume
           </button>
@@ -37,11 +37,11 @@ export default async function DashboardPage() {
 
       {resumes.length === 0 ? (
         <div className="mt-16 text-center">
-          <p className="text-gray-500">No resumes yet</p>
+          <p className="text-gray-500 dark:text-gray-400">No resumes yet</p>
           <form action={createResume} className="mt-4">
             <button
               type="submit"
-              className="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800"
+              className="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600"
             >
               Create Your First Resume
             </button>
@@ -52,16 +52,16 @@ export default async function DashboardPage() {
           {resumes.map((resume) => (
             <div
               key={resume.id}
-              className="rounded-lg border border-gray-200 bg-white p-6"
+              className="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800"
             >
-              <h2 className="font-semibold text-gray-900">{resume.title}</h2>
-              <p className="mt-1 text-sm text-gray-500">
+              <h2 className="font-semibold text-gray-900 dark:text-white">{resume.title}</h2>
+              <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
                 Updated {resume.updatedAt.toLocaleDateString()}
               </p>
               <div className="mt-4 flex gap-2">
                 <Link
                   href={`/editor/${resume.id}`}
-                  className="rounded-md bg-gray-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-gray-800"
+                  className="rounded-md bg-gray-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600"
                 >
                   Edit
                 </Link>
@@ -73,7 +73,7 @@ export default async function DashboardPage() {
                 >
                   <button
                     type="submit"
-                    className="rounded-md border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                    className="rounded-md border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50  bg-gray-100 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:bg-gray-600"
                   >
                     Delete
                   </button>

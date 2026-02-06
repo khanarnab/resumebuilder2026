@@ -1,22 +1,24 @@
 import Link from "next/link"
 import { auth, signOut } from "@/lib/auth"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export async function Navbar() {
     const session = await auth()
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white">
+        <header className="sticky top-0 z-50 w-full border-b border-gray-300 bg-gray-200 dark:border-gray-700 dark:bg-gray-800">
             <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
                 <Link href="/" className="text-xl font-bold">
                     ResumeBuilder
                 </Link>
 
-                <nav>
+                <nav className="flex items-center gap-2">
+                    <ThemeToggle />
                     {session?.user ? (
                         <div className="flex items-center gap-4">
                             <Link
                                 href="/dashboard"
-                                className="text-sm font-medium text-gray-700 hover:text-gray-900"
+                                className="text-sm font-bold text-gray-700 hover:text-gray-900 dark:text-white"
                             >
                                 Dashboard
                             </Link>
@@ -28,7 +30,7 @@ export async function Navbar() {
                             >
                                 <button
                                     type="submit"
-                                    className="text-sm font-medium text-gray-700 hover:text-gray-900"
+                                    className="text-sm font-bold text-gray-700 hover:text-gray-900 dark:text-white"
                                 >
                                     Sign Out
                                 </button>

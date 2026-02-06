@@ -20,7 +20,7 @@ export function SummaryForm({ resumeId, initialData }: SummaryFormProps) {
   return (
     <form action={handleSubmit} className="space-y-4">
       <div>
-        <label htmlFor="content" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="content" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
           Summary
         </label>
         <textarea
@@ -39,7 +39,7 @@ export function SummaryForm({ resumeId, initialData }: SummaryFormProps) {
       <button
         type="submit"
         disabled={saving}
-        className="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 disabled:opacity-50"
+        className="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 disabled:opacity-50 dark:bg-gray-200 dark:hover:bg-gray-300 dark:text-gray-900 dark:hover:text-gray-800"
       >
         {saving ? "Saving..." : "Save"}
       </button>
