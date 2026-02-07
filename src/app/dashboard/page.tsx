@@ -28,7 +28,7 @@ export default async function DashboardPage() {
         <form action={createResume}>
           <button
             type="submit"
-            className="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600"
+            className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary-hover"
           >
             New Resume
           </button>
@@ -61,7 +61,7 @@ export default async function DashboardPage() {
               <div className="mt-4 flex gap-2">
                 <Link
                   href={`/editor/${resume.id}`}
-                  className="rounded-md bg-gray-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600"
+                  className="rounded-md bg-gray-900 px-3 py-1.5 text-sm font-medium text-primary hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600"
                 >
                   Edit
                 </Link>

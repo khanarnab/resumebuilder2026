@@ -39,7 +39,7 @@ export function SummaryForm({ resumeId, initialData }: SummaryFormProps) {
       <button
         type="submit"
         disabled={saving}
-        className="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 disabled:opacity-50 dark:bg-gray-200 dark:hover:bg-gray-300 dark:text-gray-900 dark:hover:text-gray-800"
+        className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary-hover disabled:opacity-50"
       >
         {saving ? "Saving..." : "Save"}
       </button>

@@ -149,7 +149,7 @@ export function ProjectsForm({ resumeId, projects }: ProjectsFormProps) {
       <form action={handleAdd}>
         <button
           type="submit"
-          className="w-full rounded-md border-2 border-dashed border-gray-300 px-4 py-3 text-sm font-medium text-gray-600 hover:border-gray-400 hover:text-gray-900"
+          className="w-full rounded-md border-2 border-dashed border-primary px-4 py-3 text-sm font-medium text-primary hover:border-primary-hover hover:text-primary-hover"
         >
           + Add Project
         </button>

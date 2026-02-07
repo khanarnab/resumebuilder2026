@@ -130,6 +130,7 @@ model Education {
   field       String?
   startDate   DateTime?
   endDate     DateTime?
+  current     Boolean   @default(false)
   description String?   @db.Text
   sortOrder   Int       @default(0)
 

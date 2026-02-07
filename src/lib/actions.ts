@@ -291,6 +291,7 @@ export async function updateEducation(
     field?: string
     startDate?: string
     endDate?: string
+    current?: boolean
     description?: string
   }
 ) {
@@ -316,6 +317,7 @@ export async function updateEducation(
       field: data.field,
       startDate: data.startDate ? new Date(data.startDate) : null,
       endDate: data.endDate ? new Date(data.endDate) : null,
+      current: data.current,
       description: data.description,
     },
   })

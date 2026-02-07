@@ -5,14 +5,45 @@
 :root {
   --background: #ffffff;
   --foreground: #111111;
+  --primary: #AA88DD;
+  --primary-hover: #9370CC;
+  --primary-foreground: #ffffff;
 }
 
 .dark {
   --background: #111827;
   --foreground: #f3f4f6;
+  --primary: #BB99EE;
+  --primary-hover: #CCAAFF;
+  --primary-foreground: #111827;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+.bg-primary {
+  background-color: var(--primary);
+}
+
+.hover\:bg-primary-hover:hover {
+  background-color: var(--primary-hover);
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+.border-primary {
+  border-color: var(--primary);
+}
+
+.border-primary-dashed {
+  border-color: var(--primary);
+  border-style: dashed;
+}
+
+.hover\:border-primary-hover:hover {
+  border-color: var(--primary-hover);
 }

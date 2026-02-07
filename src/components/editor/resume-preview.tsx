@@ -27,6 +27,7 @@ interface ResumePreviewProps {
       field?: string | null
       startDate?: Date | null
       endDate?: Date | null
+      current: boolean
       description?: string | null
     }>
     skills: Array<{
@@ -109,7 +110,7 @@ export function ResumePreview({ resume }: ResumePreviewProps) {
                   {edu.degree}{edu.field && ` in ${edu.field}`}
                 </span>
                 <span className="text-gray-500">
-                  {formatDate(edu.startDate)} - {formatDate(edu.endDate)}
+                  {formatDate(edu.startDate)} - {edu.current ? "Present" : formatDate(edu.endDate)}
                 </span>
               </div>
               <div className="text-gray-600">{edu.institution}</div>

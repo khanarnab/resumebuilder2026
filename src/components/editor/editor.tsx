@@ -46,6 +46,7 @@ interface ResumeData {
         field?: string | null
         startDate?: Date | null
         endDate?: Date | null
+        current: boolean
         description?: string | null
     }>
     skills: Array<{

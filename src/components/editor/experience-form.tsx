@@ -174,7 +174,7 @@ function ExperienceItem({
                     onChange={(e) => setIsCurrent(e.target.checked)}
                     className="h-4 w-4 rounded border-gray-300"
                 />
-                <label htmlFor={`current-${experience.id}`} className="text-sm text-gray-700">
+                <label htmlFor={`current-${experience.id}`} className="text-sm text-gray-700 dark:text-gray-300">
                     I currently work here
                 </label>
             </div>
@@ -227,7 +227,7 @@ export function ExperienceForm({ resumeId, experiences }: ExperienceFormProps) {
             <form action={handleAdd}>
                 <button
                     type="submit"
-                    className="w-full rounded-md border-2 border-dashed border-gray-300 px-4 py-3 text-sm font-medium text-gray-600 hover:border-gray-400 hover:text-gray-900 dark:border-gray-600 dark:text-gray-400 dark:hover:border-gray-500 dark:hover:text-white"
+                    className="w-full rounded-md border-2 border-dashed border-primary px-4 py-3 text-sm font-medium text-primary hover:border-primary-hover hover:text-primary-hover"
                 >
                     + Add Experience
                 </button>

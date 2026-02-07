@@ -10,6 +10,7 @@ interface Education {
   field?: string | null
   startDate?: Date | null
   endDate?: Date | null
+  current: boolean
   description?: string | null
 }
 
@@ -32,6 +33,7 @@ function EducationItem({
 }) {
   const [saving, setSaving] = useState(false)
   const [isOpen, setIsOpen] = useState(!education.institution)
+  const [isCurrent, setIsCurrent] = useState(education.current)
 
   async function handleSubmit(formData: FormData) {
     setSaving(true)
@@ -41,6 +43,7 @@ function EducationItem({
       field: formData.get("field") as string,
       startDate: formData.get("startDate") as string,
       endDate: formData.get("endDate") as string,
+      current: isCurrent,
       description: formData.get("description") as string,
     })
     setSaving(false)
@@ -57,10 +60,12 @@ function EducationItem({
     const start = education.startDate
       ? new Date(education.startDate).toLocaleDateString("en-US", { month: "short", year: "numeric" })
       : null
-    const end = education.endDate
-      ? new Date(education.endDate).toLocaleDateString("en-US", { month: "short", year: "numeric" })
-      : null
-    const dateRange = start ? `${start} - ${end || "Present"}` : null
+    const end = education.current
+      ? "Present"
+      : education.endDate
+        ? new Date(education.endDate).toLocaleDateString("en-US", { month: "short", year: "numeric" })
+        : null
+    const dateRange = start ? `${start} - ${end || ""}` : null
 
     return (
       <div className="flex items-center justify-between rounded-md border border-gray-200 p-4 dark:border-gray-700">
@@ -145,7 +150,7 @@ function EducationItem({
             id={`startDate-${education.id}`}
             name="startDate"
             defaultValue={formatDate(education.startDate)}
-            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-gray-400"
+            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
           />
         </div>
         <div>
@@ -157,9 +162,24 @@ function EducationItem({
             id={`endDate-${education.id}`}
             name="endDate"
             defaultValue={formatDate(education.endDate)}
-            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-gray-400"
+            disabled={isCurrent}
+            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900 disabled:bg-gray-100 disabled:text-gray-400 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:disabled:bg-gray-800 dark:disabled:text-gray-500"
           />
         </div>
+      </div>
+
+      <div className="flex items-center gap-2">
+        <input
+          type="checkbox"
+          id={`current-${education.id}`}
+          name="current"
+          checked={isCurrent}
+          onChange={(e) => setIsCurrent(e.target.checked)}
+          className="h-4 w-4 rounded border-gray-300"
+        />
+        <label htmlFor={`current-${education.id}`} className="text-sm text-gray-700 dark:text-gray-300">
+          I currently attend here
+        </label>
       </div>
 
       <div>
@@ -210,7 +230,7 @@ export function EducationForm({ resumeId, education }: EducationFormProps) {
       <form action={handleAdd}>
         <button
           type="submit"
-          className="w-full rounded-md border-2 border-dashed border-gray-300 px-4 py-3 text-sm font-medium text-gray-600 hover:border-gray-400 hover:text-gray-900 dark:border-gray-600 dark:text-gray-400 dark:hover:border-gray-500 dark:hover:text-white"
+          className="w-full rounded-md border-2 border-dashed border-primary px-4 py-3 text-sm font-medium text-primary hover:border-primary-hover hover:text-primary-hover"
         >
           + Add Education
         </button>

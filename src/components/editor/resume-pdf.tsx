@@ -4,6 +4,7 @@ import {
   Text,
   View,
   StyleSheet,
+  Link,
 } from "@react-pdf/renderer"
 
 const styles = StyleSheet.create({
@@ -60,6 +61,10 @@ const styles = StyleSheet.create({
   skills: {
     color: "#4b5563",
   },
+  link: {
+    color: "#2563eb",
+    textDecoration: "none",
+  },
 })
 
 interface ResumePDFProps {
@@ -91,6 +96,7 @@ interface ResumePDFProps {
       field?: string | null
       startDate?: Date | null
       endDate?: Date | null
+      current: boolean
       description?: string | null
     }>
     skills: Array<{
@@ -124,9 +130,15 @@ export function ResumePDF({ resume }: ResumePDFProps) {
             {contactInfo?.location && <Text>• {contactInfo.location}</Text>}
           </View>
           <View style={styles.contactRow}>
-            {contactInfo?.linkedin && <Text>LinkedIn</Text>}
-            {contactInfo?.github && <Text>GitHub</Text>}
-            {contactInfo?.website && <Text>Website</Text>}
+            {contactInfo?.linkedin && (
+              <Link src={contactInfo.linkedin} style={styles.link}>LinkedIn</Link>
+            )}
+            {contactInfo?.github && (
+              <Link src={contactInfo.github} style={styles.link}>GitHub</Link>
+            )}
+            {contactInfo?.website && (
+              <Link src={contactInfo.website} style={styles.link}>Website</Link>
+            )}
           </View>
         </View>
 
@@ -170,7 +182,7 @@ export function ResumePDF({ resume }: ResumePDFProps) {
                     {edu.degree}{edu.field && ` in ${edu.field}`}
                   </Text>
                   <Text style={styles.itemDate}>
-                    {formatDate(edu.startDate)} - {formatDate(edu.endDate)}
+                    {formatDate(edu.startDate)} - {edu.current ? "Present" : formatDate(edu.endDate)}
                   </Text>
                 </View>
                 <Text style={styles.itemSubtitle}>{edu.institution}</Text>

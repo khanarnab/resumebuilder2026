@@ -34,6 +34,7 @@ interface DownloadButtonProps {
       field?: string | null
       startDate?: Date | null
       endDate?: Date | null
+      current: boolean
       description?: string | null
     }>
     skills: Array<{
@@ -69,7 +70,7 @@ export function DownloadButton({ resume }: DownloadButtonProps) {
     <button
       onClick={handleDownload}
       disabled={loading}
-      className="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 disabled:opacity-50 dark:bg-gray-700 dark:hover:bg-gray-600"
+      className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary-hover disabled:opacity-50"
     >
       {loading ? "Generating..." : "Download PDF"}
     </button>
