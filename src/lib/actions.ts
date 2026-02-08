@@ -507,3 +507,124 @@ export async function updateResumeTitle(id: string, title: string) {
 
   return { success: true }
 }
+
+export async function duplicateResume(id: string) {
+  const session = await auth()
+
+  if (!session?.user?.id) {
+    return { error: "Unauthorized" }
+  }
+
+  const original = await prisma.resume.findFirst({
+    where: { id, userId: session.user.id },
+    include: {
+      contactInfo: true,
+      summary: true,
+      experiences: true,
+      education: true,
+      skills: true,
+      projects: true,
+    },
+  })
+
+  if (!original) {
+    return { error: "Not found" }
+  }
+
+  // Find existing copies to determine the next number
+  const baseTitle = original.title.replace(/ \(Copy( \d+)?\)$/, "")
+  const existingCopies = await prisma.resume.findMany({
+    where: {
+      userId: session.user.id,
+      title: {
+        startsWith: baseTitle,
+      },
+    },
+    select: { title: true },
+  })
+
+  // Find the highest copy number
+  let maxNumber = 0
+  const copyPattern = new RegExp(`^${baseTitle.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")} \\(Copy( (\\d+))?\\)$`)
+
+  for (const resume of existingCopies) {
+    const match = resume.title.match(copyPattern)
+    if (match) {
+      const num = match[2] ? parseInt(match[2]) : 1
+      maxNumber = Math.max(maxNumber, num)
+    }
+  }
+
+  const newTitle = maxNumber === 0
+    ? `${baseTitle} (Copy)`
+    : `${baseTitle} (Copy ${maxNumber + 1})`
+
+  const duplicate = await prisma.resume.create({
+    data: {
+      userId: session.user.id,
+      title: newTitle,
+      contactInfo: original.contactInfo
+        ? {
+          create: {
+            fullName: original.contactInfo.fullName,
+            email: original.contactInfo.email,
+            phone: original.contactInfo.phone,
+            location: original.contactInfo.location,
+            linkedin: original.contactInfo.linkedin,
+            github: original.contactInfo.github,
+            website: original.contactInfo.website,
+          },
+        }
+        : undefined,
+      summary: original.summary
+        ? {
+          create: {
+            content: original.summary.content,
+          },
+        }
+        : undefined,
+      experiences: {
+        create: original.experiences.map((exp) => ({
+          company: exp.company,
+          position: exp.position,
+          location: exp.location,
+          startDate: exp.startDate,
+          endDate: exp.endDate,
+          current: exp.current,
+          description: exp.description,
+          sortOrder: exp.sortOrder,
+        })),
+      },
+      education: {
+        create: original.education.map((edu) => ({
+          institution: edu.institution,
+          degree: edu.degree,
+          field: edu.field,
+          startDate: edu.startDate,
+          endDate: edu.endDate,
+          current: edu.current,
+          description: edu.description,
+          sortOrder: edu.sortOrder,
+        })),
+      },
+      skills: {
+        create: original.skills.map((skill) => ({
+          name: skill.name,
+          sortOrder: skill.sortOrder,
+        })),
+      },
+      projects: {
+        create: original.projects.map((project) => ({
+          name: project.name,
+          url: project.url,
+          description: project.description,
+          sortOrder: project.sortOrder,
+        })),
+      },
+    },
+  })
+
+  revalidatePath("/dashboard")
+
+  return { success: true, id: duplicate.id }
+}

@@ -1,6 +1,6 @@
 import { auth } from "@/lib/auth"
 import { redirect } from "next/navigation"
-import { getResumes, createResume, deleteResume } from "@/lib/actions"
+import { getResumes, createResume, deleteResume, duplicateResume } from "@/lib/actions"
 import Link from "next/link"
 
 export const metadata = {
@@ -61,10 +61,23 @@ export default async function DashboardPage() {
               <div className="mt-4 flex gap-2">
                 <Link
                   href={`/editor/${resume.id}`}
-                  className="rounded-md bg-gray-900 px-3 py-1.5 text-sm font-medium text-primary hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600"
+                  className="rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-white hover:bg-primary-hover"
                 >
                   Edit
                 </Link>
+                <form
+                  action={async () => {
+                    "use server"
+                    await duplicateResume(resume.id)
+                  }}
+                >
+                  <button
+                    type="submit"
+                    className="rounded-md border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700"
+                  >
+                    Duplicate
+                  </button>
+                </form>
                 <form
                   action={async () => {
                     "use server"
@@ -73,7 +86,7 @@ export default async function DashboardPage() {
                 >
                   <button
                     type="submit"
-                    className="rounded-md border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50  bg-gray-100 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:bg-gray-600"
+                    className="rounded-md border border-gray-300 px-3 py-1.5 text-sm font-medium text-red-600 hover:bg-red-50 dark:border-gray-600 dark:hover:bg-red-900/20"
                   >
                     Delete
                   </button>
