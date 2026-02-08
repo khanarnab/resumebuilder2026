@@ -130,8 +130,6 @@ ResumeBuilder2026/
 ├── lib/                      # Utility functions and configs
 │   ├── auth.ts               # NextAuth configuration
 │   ├── db.ts                 # Prisma client instance
-│   └── validations/          # Zod schemas
-│       └── resume.ts
 │
 ├── prisma/                   # Database
 │   ├── schema.prisma         # Data models
