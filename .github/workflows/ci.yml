@@ -27,7 +27,7 @@ jobs:
         run: npx prisma generate
 
       - name: Run linter
-        run: npm run lint
+        run: npx eslint
 
       - name: Type check
         run: npx tsc --noEmit
