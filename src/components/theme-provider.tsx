@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useEffect, useState } from "react"
+import { createContext, useContext, useEffect, useState, useCallback, useSyncExternalStore } from "react"
 
 type Theme = "light" | "dark"
 
@@ -12,30 +12,32 @@ const ThemeContext = createContext<{
   toggleTheme: () => {},
 })
 
+function getThemeFromStorage(): Theme {
+  if (typeof window === "undefined") return "light"
+  
+  const stored = localStorage.getItem("theme") as Theme | null
+  if (stored) return stored
+  
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+}
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("light")
-  const [mounted, setMounted] = useState(false)
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  )
+
+  const [theme, setTheme] = useState<Theme>(getThemeFromStorage)
 
   useEffect(() => {
-    setMounted(true)
-    const stored = localStorage.getItem("theme") as Theme | null
-    if (stored) {
-      setTheme(stored)
-    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setTheme("dark")
-    }
-  }, [])
+    document.documentElement.classList.toggle("dark", theme === "dark")
+    localStorage.setItem("theme", theme)
+  }, [theme])
 
-  useEffect(() => {
-    if (mounted) {
-      document.documentElement.classList.toggle("dark", theme === "dark")
-      localStorage.setItem("theme", theme)
-    }
-  }, [theme, mounted])
-
-  function toggleTheme() {
+  const toggleTheme = useCallback(() => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"))
-  }
+  }, [])
 
   if (!mounted) {
     return null

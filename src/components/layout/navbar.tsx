@@ -42,10 +42,12 @@ export async function Navbar() {
                                 </button>
                             </form>
                             {session.user.image && (
-                                <img
+                                <Image
                                     src={session.user.image}
                                     alt={session.user.name || "User"}
-                                    className="h-8 w-8 rounded-full"
+                                    width={32}
+                                    height={32}
+                                    className="rounded-full"
                                 />
                             )}
                         </div>
