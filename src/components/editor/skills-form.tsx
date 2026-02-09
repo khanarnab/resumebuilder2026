@@ -73,4 +73,4 @@ export function SkillsForm({ resumeId, skills }: SkillsFormProps) {
       </form>
     </div>
   )
-}``
+}

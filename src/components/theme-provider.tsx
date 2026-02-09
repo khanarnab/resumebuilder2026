@@ -9,7 +9,7 @@ const ThemeContext = createContext<{
   toggleTheme: () => void
 }>({
   theme: "light",
-  toggleTheme: () => {},
+  toggleTheme: () => { },
 })
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
@@ -17,13 +17,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
     const stored = localStorage.getItem("theme") as Theme | null
-    if (stored) {
-      setTheme(stored)
-    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setTheme("dark")
-    }
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+    const initialTheme = stored || (prefersDark ? "dark" : "light")
+
+    setTheme(initialTheme)
+    setMounted(true)
   }, [])
 
   useEffect(() => {
